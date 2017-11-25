@@ -10,10 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     var viewContactAddOrEditPage:ViewControllerContactAddOrEdit!
+    var viewControllerContactDetail:ViewControllerContactDetail!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewContactAddOrEditPage = ViewControllerContactAddOrEdit(nibName: "ViewControllerContactAddOrEdit", bundle: nil, viewPurpose:"AddContact");
+        viewControllerContactDetail = ViewControllerContactDetail(nibName: "ViewControllerContactDetail", bundle: nil)
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -26,6 +28,9 @@ class ViewController: UIViewController {
         self.navigationController?.pushViewController(viewContactAddOrEditPage, animated: true)
     }
     
+    @IBAction func showContactDetail(_ sender: Any) {
+        self.navigationController?.pushViewController(viewControllerContactDetail, animated: true)
+    }
 
 }
 

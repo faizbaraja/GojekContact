@@ -52,7 +52,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Contact" id="d0l-pp-Sya">
-                        <barButtonItem key="leftBarButtonItem" title="Group" id="zhg-PT-Y0L"/>
+                        <barButtonItem key="leftBarButtonItem" title="Group" id="zhg-PT-Y0L">
+                            <connections>
+                                <action selector="showContactDetail:" destination="BYZ-38-t0r" id="MI3-i3-VMR"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Hdi-xT-Mqk">
                             <connections>
                                 <action selector="showAddPage:" destination="BYZ-38-t0r" id="xDM-oM-vYF"/>
