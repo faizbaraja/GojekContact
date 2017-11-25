@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewControllerContactAddOrEdit" customModule="Gojek_Contacts" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRd-Cy-GRf" customClass="GraphView" customModule="Gojek_Contacts" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="52" width="375" height="211"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Izl-Hz-dle">
+                            <rect key="frame" x="100" y="18" width="175" height="175"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJ6-Or-yXU" customClass="CircleView" customModule="Gojek_Contacts" customModuleProvider="target">
+                                    <rect key="frame" x="27" y="27" width="121" height="121"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rXe-6b-thZ" customClass="CircleImageView" customModule="Gojek_Contacts" customModuleProvider="target">
+                                            <rect key="frame" x="2" y="2" width="117" height="117"/>
+                                            <color key="backgroundColor" red="0.69803921570000005" green="0.81960784310000001" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="APF-7u-y4P" customClass="CircleImageView" customModule="Gojek_Contacts" customModuleProvider="target">
+                                            <rect key="frame" x="71" y="71" width="50" height="50"/>
+                                            <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="l1I-oF-exr"/>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="ydd-KV-tUA"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="rXe-6b-thZ" secondAttribute="trailing" constant="2" id="Odq-ax-h6a"/>
+                                        <constraint firstAttribute="bottom" secondItem="APF-7u-y4P" secondAttribute="bottom" id="S1z-zm-Sdk"/>
+                                        <constraint firstItem="rXe-6b-thZ" firstAttribute="leading" secondItem="cJ6-Or-yXU" secondAttribute="leading" constant="2" id="ZMf-Gg-5BV"/>
+                                        <constraint firstItem="rXe-6b-thZ" firstAttribute="top" secondItem="cJ6-Or-yXU" secondAttribute="top" constant="2" id="cZG-ra-veJ"/>
+                                        <constraint firstItem="APF-7u-y4P" firstAttribute="leading" secondItem="cJ6-Or-yXU" secondAttribute="leading" priority="750" constant="41" id="g1N-7D-ARU"/>
+                                        <constraint firstItem="APF-7u-y4P" firstAttribute="top" secondItem="cJ6-Or-yXU" secondAttribute="top" priority="750" constant="41" id="hI6-n6-bGB"/>
+                                        <constraint firstAttribute="bottom" secondItem="rXe-6b-thZ" secondAttribute="bottom" constant="2" id="opO-Xk-JPm"/>
+                                        <constraint firstAttribute="trailing" secondItem="APF-7u-y4P" secondAttribute="trailing" id="zpA-rx-WfY"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Izl-Hz-dle" secondAttribute="height" multiplier="1:1" id="14Z-iG-qm0"/>
+                                <constraint firstItem="cJ6-Or-yXU" firstAttribute="top" secondItem="Izl-Hz-dle" secondAttribute="top" constant="27" id="QyN-me-Ep8"/>
+                                <constraint firstItem="cJ6-Or-yXU" firstAttribute="leading" secondItem="Izl-Hz-dle" secondAttribute="leading" constant="27" id="hPO-tf-Rzg"/>
+                                <constraint firstAttribute="trailing" secondItem="cJ6-Or-yXU" secondAttribute="trailing" constant="27" id="lGX-bm-H5r"/>
+                                <constraint firstAttribute="bottom" secondItem="cJ6-Or-yXU" secondAttribute="bottom" constant="27" id="nEc-ak-pyh"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="156" id="FeW-mA-4Bb"/>
+                        <constraint firstItem="Izl-Hz-dle" firstAttribute="top" secondItem="LRd-Cy-GRf" secondAttribute="top" constant="18" id="ZkY-Nf-HKr"/>
+                        <constraint firstAttribute="bottom" secondItem="Izl-Hz-dle" secondAttribute="bottom" constant="18" id="eGA-qv-Ee1"/>
+                        <constraint firstItem="Izl-Hz-dle" firstAttribute="leading" secondItem="LRd-Cy-GRf" secondAttribute="leading" constant="100" id="heg-gR-09h"/>
+                        <constraint firstAttribute="trailing" secondItem="Izl-Hz-dle" secondAttribute="trailing" constant="100" id="u14-Vm-Nob"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                            <color key="value" red="0.31372549019607843" green="0.76470588235294112" blue="0.38431372549019605" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lvQ-8W-kY8">
+                    <rect key="frame" x="0.0" y="263" width="375" height="404"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="lvQ-8W-kY8" firstAttribute="trailing" secondItem="BqX-3m-n2h" secondAttribute="trailing" id="1KD-f8-A7B"/>
+                <constraint firstItem="LRd-Cy-GRf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="52" id="3gg-bS-N3B"/>
+                <constraint firstItem="lvQ-8W-kY8" firstAttribute="bottom" secondItem="BqX-3m-n2h" secondAttribute="bottom" id="8mS-wj-NNu"/>
+                <constraint firstItem="lvQ-8W-kY8" firstAttribute="leading" secondItem="BqX-3m-n2h" secondAttribute="leading" id="FJu-X0-ntP"/>
+                <constraint firstItem="LRd-Cy-GRf" firstAttribute="leading" secondItem="BqX-3m-n2h" secondAttribute="leading" id="WLu-Zb-Lfd"/>
+                <constraint firstItem="lvQ-8W-kY8" firstAttribute="top" secondItem="LRd-Cy-GRf" secondAttribute="bottom" id="lPt-1a-JEi"/>
+                <constraint firstItem="LRd-Cy-GRf" firstAttribute="trailing" secondItem="BqX-3m-n2h" secondAttribute="trailing" id="o5n-6L-fDl"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="BqX-3m-n2h"/>
+        </view>
+    </objects>
+</document>
