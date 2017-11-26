@@ -24,6 +24,8 @@
 		A9730B591FC9491B0014E005 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9730B581FC9491B0014E005 /* GraphView.swift */; };
 		A9730B5B1FC950690014E005 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9730B5A1FC950690014E005 /* CircleView.swift */; };
 		A9730B5D1FC959CB0014E005 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9730B5C1FC959CB0014E005 /* CircleImageView.swift */; };
+		A9F637921FC9FAFD0087942B /* TableViewCellContactData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F637901FC9FAFD0087942B /* TableViewCellContactData.swift */; };
+		A9F637931FC9FAFD0087942B /* TableViewCellContactData.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F637911FC9FAFD0087942B /* TableViewCellContactData.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		A9730B581FC9491B0014E005 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		A9730B5A1FC950690014E005 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		A9730B5C1FC959CB0014E005 /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
+		A9F637901FC9FAFD0087942B /* TableViewCellContactData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellContactData.swift; sourceTree = "<group>"; };
+		A9F637911FC9FAFD0087942B /* TableViewCellContactData.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellContactData.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,7 @@
 		A9730B3B1FC91EB60014E005 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A9F6378F1FC9FA9B0087942B /* UITableViewCell */,
 				A9730B571FC949020014E005 /* UIView */,
 				A9730B481FC91F5F0014E005 /* ViewControllerContactDetail.swift */,
 				A9730B4C1FC91F7E0014E005 /* ViewControllerContactAddOrEdit.swift */,
@@ -178,6 +183,7 @@
 		A9730B3D1FC91EC30014E005 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A9F6378E1FC9FA730087942B /* UITaableViewCell */,
 				A9730B491FC91F5F0014E005 /* ViewControllerContactDetail.xib */,
 				A9730B4D1FC91F7E0014E005 /* ViewControllerContactAddOrEdit.xib */,
 				A9730B511FC91F990014E005 /* ViewControllerContactList.xib */,
@@ -193,6 +199,22 @@
 				A9730B5C1FC959CB0014E005 /* CircleImageView.swift */,
 			);
 			path = UIView;
+			sourceTree = "<group>";
+		};
+		A9F6378E1FC9FA730087942B /* UITaableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				A9F637911FC9FAFD0087942B /* TableViewCellContactData.xib */,
+			);
+			path = UITaableViewCell;
+			sourceTree = "<group>";
+		};
+		A9F6378F1FC9FA9B0087942B /* UITableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				A9F637901FC9FAFD0087942B /* TableViewCellContactData.swift */,
+			);
+			path = UITableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9730B171FC91DE30014E005 /* LaunchScreen.storyboard in Resources */,
+				A9F637931FC9FAFD0087942B /* TableViewCellContactData.xib in Resources */,
 				A9730B141FC91DE30014E005 /* Assets.xcassets in Resources */,
 				A9730B4B1FC91F5F0014E005 /* ViewControllerContactDetail.xib in Resources */,
 				A9730B0F1FC91DE30014E005 /* Main.storyboard in Resources */,
@@ -332,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9F637921FC9FAFD0087942B /* TableViewCellContactData.swift in Sources */,
 				A9730B5B1FC950690014E005 /* CircleView.swift in Sources */,
 				A9730B5D1FC959CB0014E005 /* CircleImageView.swift in Sources */,
 				A9730B4E1FC91F7E0014E005 /* ViewControllerContactAddOrEdit.swift in Sources */,

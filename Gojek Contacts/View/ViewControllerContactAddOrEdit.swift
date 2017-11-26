@@ -8,9 +8,18 @@
 
 import UIKit
 
-class ViewControllerContactAddOrEdit: UIViewController {
+class ViewControllerContactAddOrEdit: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate {
     @IBOutlet var layoutConstraintTrailingCameraIcon:NSLayoutConstraint!
+    @IBOutlet weak var constraintTopHeaderLayout: NSLayoutConstraint!
     @IBOutlet var imageViewCameraIcon:UIImageView!
+    
+    @IBOutlet var tableContactData:UITableView!
+    
+    var textFieldActive:UITextField!
+    
+    var arrayCotactKeyData:NSArray!
+    
+    let intDefaultConstantForTopLayout:CGFloat = 52
     required init?(coder aDecoder: NSCoder) {
         print("init coder style")
         super.init(coder: aDecoder)
@@ -27,8 +36,25 @@ class ViewControllerContactAddOrEdit: UIViewController {
     }
     
     override func viewDidLoad() {
-        //layoutConstraintTrailingCameraIcon.constant = -(imageViewCameraIcon.frame.size.width/2)
-        //self.view.layoutIfNeeded()
+        tableContactData.dataSource = self
+        tableContactData.delegate = self
+        tableContactData.register(UINib(nibName: "TableViewCellContactData", bundle: nil), forCellReuseIdentifier: "TableViewCellContactData")
+        
+        arrayCotactKeyData = NSArray(objects: "First Name","Last Name","mobile","email")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        tableContactData.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,6 +68,59 @@ class ViewControllerContactAddOrEdit: UIViewController {
     
     @IBAction func cancelContactData(_ sender: Any){
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        let frameInsideTableView:CGPoint = textField.frame.origin
+        let frameConvertToSuperView:CGPoint = textField.convert(textField.frame.origin, to: tableContactData)
+        let frameConvertToRoot:CGPoint = textField.convert(textField.frame.origin, to: self.view)
+        print("\(frameInsideTableView) + \(frameConvertToSuperView) + \(frameConvertToRoot)")
+        textFieldActive = textField
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
+    
+    @objc func keyboardWillShowNotification(notification: NSNotification) {
+        let keyboardSize:CGRect = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as? CGRect)!
+        let frameConvertToRoot:CGPoint = textFieldActive.convert(textFieldActive.frame.origin, to: self.view)
+        let keyboardOrigin:CGPoint = keyboardSize.origin
+        
+        let textFieldMaxYPosition:CGFloat = frameConvertToRoot.y + textFieldActive.frame.size.height
+        
+        if (textFieldMaxYPosition > keyboardOrigin.y){
+            let textFieldDistanceToKeyboardOriginY:CGFloat = textFieldMaxYPosition - keyboardOrigin.y
+            constraintTopHeaderLayout.constant = intDefaultConstantForTopLayout - textFieldDistanceToKeyboardOriginY - 10
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    @objc func keyboardWillHideNotification(notification: NSNotification) {
+        constraintTopHeaderLayout.constant = intDefaultConstantForTopLayout
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrayCotactKeyData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //let cell: TableViewCellContactData = TableViewCellContactData(style: UITableViewCellStyle.default, reuseIdentifier: "CustomCell", cellKey :arrayCotactKeyData.object(at: indexPath.row) as? String)
+        //set the data here
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellContactData", for: indexPath) as! TableViewCellContactData
+        cell.textFieldValue.delegate = self
+        cell.labelKey.text = arrayCotactKeyData.object(at: indexPath.row) as? String
+        return cell
     }
     /*
     // MARK: - Navigation
