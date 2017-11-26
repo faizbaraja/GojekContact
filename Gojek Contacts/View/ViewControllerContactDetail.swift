@@ -8,9 +8,11 @@
 
 import UIKit
 
-class ViewControllerContactDetail: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class ViewControllerContactDetail: UIViewController,UITableViewDataSource,UITableViewDelegate
+{
     @IBOutlet var tableContactData:UITableView!
     
+    let controllerContactDetail = ControllerContactDetail()
     var arrayCotactKeyData:NSArray!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,47 @@ class ViewControllerContactDetail: UIViewController,UITableViewDataSource,UITabl
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func operMessageApp(sender : Any){
+        if (controllerContactDetail.canSendText()){
+            let messageComposeVC = controllerContactDetail.actionComposeMessage(contactPhoneNumber: "1212121", bodyMessage: "1adkadadadsa")
+            present(messageComposeVC, animated: true, completion: nil)
+        }
+        else{
+            let viewAlertError = UIAlertController(title: "Cannot Send Text Message", message: "Your device is not able to send text messages.", preferredStyle: .alert)
+            let actionAlert = UIAlertAction(title: "OK", style: .cancel, handler: {(alert: UIAlertAction!) in
+                viewAlertError.dismiss(animated: true, completion: nil)})
+            viewAlertError.addAction(actionAlert)
+            present(viewAlertError, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func makePhoneCall(sender : Any){
+        if (controllerContactDetail.canMakePhoneCall()){
+            controllerContactDetail.actionCallContact(contactPhoneNumber: "13131313")
+        }
+        else{
+            let viewAlertError = UIAlertController(title: "Cannot Make Phone Call", message: "Your device is not able to make phone call.", preferredStyle: .alert)
+            let actionAlert = UIAlertAction(title: "OK", style: .cancel, handler: {(alert: UIAlertAction!) in
+                viewAlertError.dismiss(animated: true, completion: nil)})
+            viewAlertError.addAction(actionAlert)
+            present(viewAlertError, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func sendEmailToContact(sender : Any){
+        if (controllerContactDetail.canSendMail()){
+            //controllerContactDetail.actionCallContact(contactPhoneNumber: "13131313")
+            controllerContactDetail.actionMailContact(recipientAddress: "faiz.baraja89@gmail.com", mailSubject: "Test Subject", messageBody: "test body")
+        }
+        else{
+            let viewAlertError = UIAlertController(title: "Cannot Send EMail", message: "Your device is not able to send email.", preferredStyle: .alert)
+            let actionAlert = UIAlertAction(title: "OK", style: .cancel, handler: {(alert: UIAlertAction!) in
+                viewAlertError.dismiss(animated: true, completion: nil)})
+            viewAlertError.addAction(actionAlert)
+            present(viewAlertError, animated: true, completion: nil)
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

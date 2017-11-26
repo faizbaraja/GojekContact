@@ -26,6 +26,8 @@
 		A9730B5D1FC959CB0014E005 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9730B5C1FC959CB0014E005 /* CircleImageView.swift */; };
 		A9F637921FC9FAFD0087942B /* TableViewCellContactData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F637901FC9FAFD0087942B /* TableViewCellContactData.swift */; };
 		A9F637931FC9FAFD0087942B /* TableViewCellContactData.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F637911FC9FAFD0087942B /* TableViewCellContactData.xib */; };
+		A9F637951FCA86C30087942B /* ControllerContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F637941FCA86C30087942B /* ControllerContactDetail.swift */; };
+		A9F637971FCA86DE0087942B /* ControllerContactAddEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F637961FCA86DE0087942B /* ControllerContactAddEdit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		A9730B5C1FC959CB0014E005 /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		A9F637901FC9FAFD0087942B /* TableViewCellContactData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellContactData.swift; sourceTree = "<group>"; };
 		A9F637911FC9FAFD0087942B /* TableViewCellContactData.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellContactData.xib; sourceTree = "<group>"; };
+		A9F637941FCA86C30087942B /* ControllerContactDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerContactDetail.swift; sourceTree = "<group>"; };
+		A9F637961FCA86DE0087942B /* ControllerContactAddEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerContactAddEdit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,8 @@
 		A9730B3C1FC91EBC0014E005 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A9F637941FCA86C30087942B /* ControllerContactDetail.swift */,
+				A9F637961FCA86DE0087942B /* ControllerContactAddEdit.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -356,12 +362,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9F637921FC9FAFD0087942B /* TableViewCellContactData.swift in Sources */,
+				A9F637951FCA86C30087942B /* ControllerContactDetail.swift in Sources */,
 				A9730B5B1FC950690014E005 /* CircleView.swift in Sources */,
 				A9730B5D1FC959CB0014E005 /* CircleImageView.swift in Sources */,
 				A9730B4E1FC91F7E0014E005 /* ViewControllerContactAddOrEdit.swift in Sources */,
 				A9730B0C1FC91DE30014E005 /* ViewController.swift in Sources */,
 				A9730B591FC9491B0014E005 /* GraphView.swift in Sources */,
 				A9730B121FC91DE30014E005 /* Gojek_Contacts.xcdatamodeld in Sources */,
+				A9F637971FCA86DE0087942B /* ControllerContactAddEdit.swift in Sources */,
 				A9730B521FC91F990014E005 /* ViewControllerContactList.swift in Sources */,
 				A9730B4A1FC91F5F0014E005 /* ViewControllerContactDetail.swift in Sources */,
 				A9730B0A1FC91DE30014E005 /* AppDelegate.swift in Sources */,
