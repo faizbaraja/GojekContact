@@ -8,16 +8,19 @@
 
 import UIKit
 
-class ViewControllerContactAddOrEdit: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate {
+class ViewControllerContactAddOrEdit: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,ContactDataModificationDelegate {
+    
     @IBOutlet var layoutConstraintTrailingCameraIcon:NSLayoutConstraint!
     @IBOutlet weak var constraintTopHeaderLayout: NSLayoutConstraint!
     @IBOutlet var imageViewCameraIcon:UIImageView!
+    @IBOutlet var imageViewProfilePicture:UIImageView!
     
     @IBOutlet var tableContactData:UITableView!
     
     var textFieldActive:UITextField!
     
     var arrayCotactKeyData:NSArray!
+    let controllerContactAddEdit = ControllerContactAddEdit()
     
     let intDefaultConstantForTopLayout:CGFloat = 52
     required init?(coder aDecoder: NSCoder) {
@@ -36,6 +39,8 @@ class ViewControllerContactAddOrEdit: UIViewController,UITableViewDataSource,UIT
     }
     
     override func viewDidLoad() {
+        controllerContactAddEdit.delegate = self
+        
         tableContactData.dataSource = self
         tableContactData.delegate = self
         tableContactData.register(UINib(nibName: "TableViewCellContactData", bundle: nil), forCellReuseIdentifier: "TableViewCellContactData")
@@ -68,6 +73,52 @@ class ViewControllerContactAddOrEdit: UIViewController,UITableViewDataSource,UIT
     
     @IBAction func cancelContactData(_ sender: Any){
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func chooseProfilePicture(_ sender: Any){
+        let alertSheetImageProfilePicture = UIAlertController(title: "Choose Media", message: "Choose Profile Picture", preferredStyle: .actionSheet)
+        
+        let actionSheetCamera = UIAlertAction(title: "Camera", style: .default)
+        { _ in
+            alertSheetImageProfilePicture.dismiss(animated: true, completion:nil)
+            if (self.controllerContactAddEdit.canUseCamera()){
+                let cameraPicker = self.controllerContactAddEdit.createPickerCamera()
+                self.present(cameraPicker, animated: true, completion: nil)
+            }
+            else{
+                let viewAlertError = UIAlertController(title: "Cannot Use Camera", message: "Your device is not able to use camera.", preferredStyle: .alert)
+                let actionAlert = UIAlertAction(title: "OK", style: .cancel, handler: {(alert: UIAlertAction!) in
+                    viewAlertError.dismiss(animated: true, completion: nil)})
+                viewAlertError.addAction(actionAlert)
+                self.present(viewAlertError, animated: true, completion: nil)
+            }
+        }
+        
+        let actionSheetGallery = UIAlertAction(title: "Library", style: .default)
+        { _ in
+            alertSheetImageProfilePicture.dismiss(animated: true, completion:nil)
+            if (self.controllerContactAddEdit.canUseLibrary()){
+                let libraryPicker = self.controllerContactAddEdit.createPickerImageLibrary()
+                self.present(libraryPicker, animated: true, completion: nil)
+            }
+            else{
+                let viewAlertError = UIAlertController(title: "Cannot Open Medi Library", message: "Your device is not able to open library.", preferredStyle: .alert)
+                let actionAlert = UIAlertAction(title: "OK", style: .cancel, handler: {(alert: UIAlertAction!) in
+                    viewAlertError.dismiss(animated: true, completion: nil)})
+                viewAlertError.addAction(actionAlert)
+                self.present(viewAlertError, animated: true, completion: nil)
+            }
+        }
+        
+        let actionSheetCancel = UIAlertAction(title: "Cancel", style: .default)
+        { _ in
+            alertSheetImageProfilePicture.dismiss(animated: true, completion: nil)
+        }
+        alertSheetImageProfilePicture .addAction(actionSheetCamera)
+        alertSheetImageProfilePicture .addAction(actionSheetGallery)
+        alertSheetImageProfilePicture .addAction(actionSheetCancel)
+        
+        present(alertSheetImageProfilePicture, animated: true, completion: nil)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField){
@@ -121,6 +172,10 @@ class ViewControllerContactAddOrEdit: UIViewController,UITableViewDataSource,UIT
         cell.textFieldValue.delegate = self
         cell.labelKey.text = arrayCotactKeyData.object(at: indexPath.row) as? String
         return cell
+    }
+    
+    func setImageViewWithImage(_ imageCaptured:UIImage){
+        imageViewProfilePicture.image = imageCaptured
     }
     /*
     // MARK: - Navigation

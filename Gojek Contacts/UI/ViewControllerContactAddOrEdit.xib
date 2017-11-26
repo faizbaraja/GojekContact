@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewControllerContactAddOrEdit" customModule="Gojek_Contacts" customModuleProvider="target">
             <connections>
                 <outlet property="constraintTopHeaderLayout" destination="3gg-bS-N3B" id="BGG-nl-7nq"/>
+                <outlet property="imageViewProfilePicture" destination="rXe-6b-thZ" id="yzm-Nl-hXB"/>
                 <outlet property="tableContactData" destination="lvQ-8W-kY8" id="U9o-zv-hRe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -43,16 +44,26 @@
                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="ydd-KV-tUA"/>
                                             </constraints>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Wl-gr-UO6">
+                                            <rect key="frame" x="0.0" y="0.0" width="121" height="121"/>
+                                            <connections>
+                                                <action selector="chooseProfilePicture:" destination="-1" eventType="touchUpInside" id="gu1-Uc-r1Q"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="1Wl-gr-UO6" secondAttribute="bottom" id="7qS-Sa-qXo"/>
                                         <constraint firstAttribute="trailing" secondItem="rXe-6b-thZ" secondAttribute="trailing" constant="2" id="Odq-ax-h6a"/>
                                         <constraint firstAttribute="bottom" secondItem="APF-7u-y4P" secondAttribute="bottom" id="S1z-zm-Sdk"/>
+                                        <constraint firstItem="1Wl-gr-UO6" firstAttribute="leading" secondItem="cJ6-Or-yXU" secondAttribute="leading" id="V7e-oV-lvw"/>
                                         <constraint firstItem="rXe-6b-thZ" firstAttribute="leading" secondItem="cJ6-Or-yXU" secondAttribute="leading" constant="2" id="ZMf-Gg-5BV"/>
                                         <constraint firstItem="rXe-6b-thZ" firstAttribute="top" secondItem="cJ6-Or-yXU" secondAttribute="top" constant="2" id="cZG-ra-veJ"/>
                                         <constraint firstItem="APF-7u-y4P" firstAttribute="leading" secondItem="cJ6-Or-yXU" secondAttribute="leading" priority="750" constant="41" id="g1N-7D-ARU"/>
                                         <constraint firstItem="APF-7u-y4P" firstAttribute="top" secondItem="cJ6-Or-yXU" secondAttribute="top" priority="750" constant="41" id="hI6-n6-bGB"/>
+                                        <constraint firstAttribute="trailing" secondItem="1Wl-gr-UO6" secondAttribute="trailing" id="kSb-bS-oOG"/>
                                         <constraint firstAttribute="bottom" secondItem="rXe-6b-thZ" secondAttribute="bottom" constant="2" id="opO-Xk-JPm"/>
+                                        <constraint firstItem="1Wl-gr-UO6" firstAttribute="top" secondItem="cJ6-Or-yXU" secondAttribute="top" id="pVg-BE-UWC"/>
                                         <constraint firstAttribute="trailing" secondItem="APF-7u-y4P" secondAttribute="trailing" id="zpA-rx-WfY"/>
                                     </constraints>
                                 </view>
