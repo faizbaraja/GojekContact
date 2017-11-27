@@ -16,7 +16,7 @@ class ControllerMainView: NSObject {
     }
     
     func convertArrayToDictionaryWithFirstLetterAsKey(arrayData : [String]) -> [String:[String]]{
-        let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".characters.map({ String($0) })
+        let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".map({ String($0) })
         
         let words = arrayData
         

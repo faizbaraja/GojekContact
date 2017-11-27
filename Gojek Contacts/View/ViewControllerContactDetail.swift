@@ -10,12 +10,27 @@ import UIKit
 
 class ViewControllerContactDetail: UIViewController,UITableViewDataSource,UITableViewDelegate
 {
+    var viewContactAddOrEditPage:ViewControllerContactAddOrEdit!
+    
     @IBOutlet var tableContactData:UITableView!
     
     let controllerContactDetail = ControllerContactDetail()
     var arrayCotactKeyData:NSArray!
+    
+    required init?(coder aDecoder: NSCoder) {
+        print("init coder style")
+        super.init(coder: aDecoder)
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)   {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.navigationItem.title = ""
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain,     target: self, action: #selector(editContactData))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewContactAddOrEditPage = ViewControllerContactAddOrEdit(nibName: "ViewControllerContactAddOrEdit", bundle: nil, viewPurpose:"EditContact");
         
         tableContactData.dataSource = self
         tableContactData.delegate = self
@@ -32,6 +47,10 @@ class ViewControllerContactDetail: UIViewController,UITableViewDataSource,UITabl
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func editContactData(_ sender: Any){
+        self.navigationController?.pushViewController(viewContactAddOrEditPage, animated: true)
     }
     
     @IBAction func operMessageApp(sender : Any){
@@ -88,6 +107,7 @@ class ViewControllerContactDetail: UIViewController,UITableViewDataSource,UITabl
             //set the data here
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellContactData", for: indexPath) as! TableViewCellContactData
         cell.labelKey.text = arrayCotactKeyData.object(at: indexPath.row) as? String
+        cell.isUserInteractionEnabled = false
         return cell
     }
 

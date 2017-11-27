@@ -31,10 +31,13 @@ class ViewControllerContactAddOrEdit: UIViewController,UITableViewDataSource,UIT
     init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, viewPurpose viewPurposeOrNil: String?)   {
         print("init nibName style "+viewPurposeOrNil!)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.navigationItem.title = ""
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain,     target: self, action: #selector(cancelContactData))
         if (viewPurposeOrNil=="AddContact"){
-            self.navigationItem.title = ""
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain,     target: self, action: #selector(saveContactData))
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain,     target: self, action: #selector(cancelContactData))
+        }
+        else{
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain,     target: self, action: #selector(saveContactData))
         }
     }
     
@@ -65,6 +68,24 @@ class ViewControllerContactAddOrEdit: UIViewController,UITableViewDataSource,UIT
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        let stringTextData:String = arrayCotactKeyData.object(at: textField.tag) as! String
+        var allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        if (stringTextData == "mobile"){
+            allowedCharacters = CharacterSet.decimalDigits
+        }
+        else if ((stringTextData == "First Name") || (stringTextData == "Last Name")){
+            let setNameCharacterSet = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ ")
+            allowedCharacters = setNameCharacterSet
+        }
+        else{
+            allowedCharacters = CharacterSet.alphanumerics
+        }
+        return allowedCharacters.isSuperset(of: characterSet)
     }
     
     @IBAction func saveContactData(_ sender: Any){
@@ -171,6 +192,7 @@ class ViewControllerContactAddOrEdit: UIViewController,UITableViewDataSource,UIT
         //set the data here
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellContactData", for: indexPath) as! TableViewCellContactData
         cell.textFieldValue.delegate = self
+        cell.textFieldValue.tag = indexPath.row
         cell.labelKey.text = arrayCotactKeyData.object(at: indexPath.row) as? String
         return cell
     }
