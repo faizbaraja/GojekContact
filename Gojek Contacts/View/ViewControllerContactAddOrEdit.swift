@@ -157,6 +157,7 @@ class ViewControllerContactAddOrEdit: UIViewController,UITableViewDataSource,UIT
             self.view.layoutIfNeeded()
         })
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
