@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+import CoreData
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,ControllerMainViewDelegate {
     let controllerMainView = ControllerMainView()
     
     var viewContactAddOrEditPage:ViewControllerContactAddOrEdit!
@@ -33,20 +33,28 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             self.tableListContactData.reloadData()
         }
     }
-    var tableData : [String:[String]]!
+    var tableData : [String:[NSManagedObject]]!
     var tableDataKeys : [String]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        controllerMainView.delegate = self
+        
         viewContactAddOrEditPage = ViewControllerContactAddOrEdit(nibName: "ViewControllerContactAddOrEdit", bundle: nil, viewPurpose:"AddContact");
         viewControllerContactDetail = ViewControllerContactDetail(nibName: "ViewControllerContactDetail", bundle: nil)
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
         tableListContactData.dataSource = self
         tableListContactData.delegate = self
         tableListContactData.register(UINib(nibName: "TableViewCellContactList", bundle: nil), forCellReuseIdentifier: "TableViewCellContactList")
         
-        tableData = controllerMainView.getDataForTableView()
+        tableData = [:]
         tableDataKeys = tableData.keys.sorted()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.getContactFromServer()
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,12 +62,25 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         // Dispose of any resources that can be recreated.
     }
 
+    func getContactFromServer(){
+        controllerMainView.getContactsDataFromServer()
+    }
+    
     @IBAction func showAddPage(_ sender: Any) {
         self.navigationController?.pushViewController(viewContactAddOrEditPage, animated: true)
     }
     
     @IBAction func showContactDetail(_ sender: Any) {
         self.navigationController?.pushViewController(viewControllerContactDetail, animated: true)
+    }
+    
+    func loadData(){
+        tableData = controllerMainView.getDataForTableView()
+        tableDataKeys = tableData.keys.sorted()
+        DispatchQueue.main.async{
+            self.tableListContactData.reloadData()
+        }
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -79,7 +100,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         let sectionData = tableData[sectionTitle]!
         if (sectionData.count > 0){
             let data = sectionData[indexPath.row];
-            cell.labelContactName.text = data
+            cell.labelContactName.text = "\(data.value(forKey: "first_name") as! String) \(data.value(forKey: "last_name") as! String)"
         }
         
         return cell
