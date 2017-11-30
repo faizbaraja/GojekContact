@@ -11,6 +11,9 @@ import UIKit
 class CircleImageView: UIImageView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    override func layoutSubviews() {
         self.layer.cornerRadius = self.frame.size.width/2
     }
     /*

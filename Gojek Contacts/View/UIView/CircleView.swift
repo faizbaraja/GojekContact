@@ -11,14 +11,20 @@ import UIKit
 class CircleView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //self.layer.cornerRadius = 50
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.layer.cornerRadius = self.frame.size.width/2
     }
     
+    override func didMoveToSuperview() {
+        
+    }
+    
+    override func layoutSubviews() {
+        self.layer.cornerRadius = self.frame.size.width/2
+        print ("view circle \(self.frame)")
+    }
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
