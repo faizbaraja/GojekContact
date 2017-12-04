@@ -10,9 +10,12 @@ import UIKit
 
 class ViewControllerContactDetail: UIViewController,UITableViewDataSource,UITableViewDelegate
 {
+    var modelContactDataState:ModelContactDataState!
     var viewContactAddOrEditPage:ViewControllerContactAddOrEdit!
     
     @IBOutlet var tableContactData:UITableView!
+    @IBOutlet var labelContactName:UILabel!
+    @IBOutlet var imageViewContactPicutre:UIImageView!
     
     let controllerContactDetail = ControllerContactDetail()
     var arrayCotactKeyData:NSArray!
@@ -40,6 +43,11 @@ class ViewControllerContactDetail: UIViewController,UITableViewDataSource,UITabl
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("contact data selected \(modelContactDataState.getSelectedContactData())")
+        self.setContactDetailData()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         tableContactData.reloadData()
     }
@@ -47,6 +55,11 @@ class ViewControllerContactDetail: UIViewController,UITableViewDataSource,UITabl
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setContactDetailData(){
+        let dictionaryContactSelected = modelContactDataState.getSelectedContactData()
+        labelContactName.text = "\(dictionaryContactSelected["first_name"] as! String) \(dictionaryContactSelected["last_name"] as! String)"
     }
     
     @IBAction func editContactData(_ sender: Any){

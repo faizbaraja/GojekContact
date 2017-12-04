@@ -9,6 +9,7 @@
 import UIKit
 protocol WebServiceReturnDelegate {
     func jsonData(_ dataFromServer:Any)
+    func setImageDownloadedFromURL(_ imageFile:UIImage, imageViewContact:UIImageView, stringImageLink:String)
 }
 
 class ModelWebServiceCall: NSObject,URLSessionDelegate {
@@ -58,5 +59,32 @@ class ModelWebServiceCall: NSObject,URLSessionDelegate {
         }
     }
     
-    
+    func loadImageFromURL(link:String, imageview:UIImageView)
+    {
+        let stringImageFullPath:String = link
+        let encoded = stringImageFullPath.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
+        let url:NSURL = NSURL(string: encoded!)!
+        let session = URLSession.shared
+        
+        let request = NSMutableURLRequest(url: url as URL)
+        request.timeoutInterval = 10
+        
+        let task = session.dataTask(with: request as URLRequest) {
+            (
+            data, response, error) in
+            guard let _:NSData = data as NSData?, let _:URLResponse = response, error == nil else {
+                return
+            }
+            
+            let image = UIImage(data: data!)
+            
+            if (image != nil)
+            {
+                DispatchQueue.main.async{
+                    self.self.delegate?.setImageDownloadedFromURL(image!, imageViewContact:imageview, stringImageLink:link)
+                }
+            }
+        }
+        task.resume()
+    }
 }

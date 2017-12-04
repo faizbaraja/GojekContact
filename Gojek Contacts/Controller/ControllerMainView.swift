@@ -20,6 +20,9 @@ class ControllerMainView: NSObject,WebServiceReturnDelegate {
     let modelWebServiceDataParse = ModelWebServiceDataParse()
 
     let modelEntityContact = ModelEntityContact()
+    
+    
+    
     func getDataForTableView() -> [String:[NSManagedObject]]{
         let contactAllData = self.getAllContactData()
         //let arrayContactData = ["AAA","BBB","CCC","DDD","EEE","FFF","GGG","HHH","III","JJJ","KKK","LLL","MMM","NNN","OOO","PPP"]
@@ -43,10 +46,6 @@ class ControllerMainView: NSObject,WebServiceReturnDelegate {
             result[letter] = []
             let matches = words.filter({ $0.hasPrefix(letter) })
             if !matches.isEmpty {
-                /*for word in matches {
-                    let indexData:Int = matches.index(of: word)!
-                    result[letter]?.append(arrayData[indexData])
-                }*/
                 for (index, element) in matches.enumerated() {
                     let arrayString:[String] = element.components(separatedBy: " ")
                     let indexLastElement:String = arrayString[arrayString.count-1]
@@ -64,23 +63,28 @@ class ControllerMainView: NSObject,WebServiceReturnDelegate {
         modelWebServiceCall.callRESTAPI(stringAPIURL: urlAPIGetContacts, stringHTTPMethod: modelWebServiceCall.httpGET)
     }
     
+    func loadImageFromURL(link:String, imageview:UIImageView){
+        modelWebServiceCall.delegate = self
+        modelWebServiceCall.loadImageFromURL(link:link, imageview:imageview)
+    }
+    
     func jsonData(_ dataFromServer:Any){
         let isDataArray = modelWebServiceDataParse.isDataArray(rawData: dataFromServer)
         let isDataDictionary = modelWebServiceDataParse.isDataDictionary(rawData: dataFromServer)
         
         if (isDataArray){
-            modelEntityContact.deleteAllContactRecords()
+            self.modelEntityContact.deleteAllContactRecords()
             let arrayDataContact = dataFromServer as! NSArray
             for dictContact in arrayDataContact {
                 print("iteration \(arrayDataContact.index(of: dictContact))")
-                modelEntityContact.saveContactData(dictContactData: dictContact as! [String:Any])
+                self.modelEntityContact.saveContactData(dictContactData: dictContact as! [String:Any])
             }
         }
         
         if (isDataDictionary){
-            modelEntityContact.deleteAllContactRecords()
+            self.modelEntityContact.deleteAllContactRecords()
             let dictionaryDataContact = dataFromServer as! [String:Any]
-            modelEntityContact.saveContactData(dictContactData: dictionaryDataContact)
+            self.modelEntityContact.saveContactData(dictContactData: dictionaryDataContact)
         }
         delegate?.loadData()
     }
@@ -88,4 +92,6 @@ class ControllerMainView: NSObject,WebServiceReturnDelegate {
     func getAllContactData() -> [NSManagedObject] {
         return modelEntityContact.getAllContactData()
     }
+    
+   
 }

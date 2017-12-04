@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewControllerContactDetail" customModule="Gojek_Contacts" customModuleProvider="target">
             <connections>
+                <outlet property="imageViewContactPicutre" destination="g8H-IT-Gj5" id="tXo-RH-0Wh"/>
+                <outlet property="labelContactName" destination="uiQ-7y-pkU" id="Knt-Ga-64b"/>
                 <outlet property="tableContactData" destination="cd7-Ea-Zbd" id="mF0-IR-KbC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

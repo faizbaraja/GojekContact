@@ -10,6 +10,7 @@
 		A900CCDB1FCC87FA007DCDBE /* ModelWebServiceCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900CCDA1FCC87FA007DCDBE /* ModelWebServiceCall.swift */; };
 		A900CCDE1FCC93F9007DCDBE /* ModelWebServiceDataParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900CCDD1FCC93F9007DCDBE /* ModelWebServiceDataParse.swift */; };
 		A900CCE11FCCC103007DCDBE /* ModelEntityContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900CCE01FCCC103007DCDBE /* ModelEntityContact.swift */; };
+		A92BCA841FD3CC80004888A0 /* ModelContactDataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92BCA831FD3CC7F004888A0 /* ModelContactDataState.swift */; };
 		A9730B0A1FC91DE30014E005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9730B091FC91DE30014E005 /* AppDelegate.swift */; };
 		A9730B0C1FC91DE30014E005 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9730B0B1FC91DE30014E005 /* ViewController.swift */; };
 		A9730B0F1FC91DE30014E005 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9730B0D1FC91DE30014E005 /* Main.storyboard */; };
@@ -57,6 +58,7 @@
 		A900CCDA1FCC87FA007DCDBE /* ModelWebServiceCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelWebServiceCall.swift; sourceTree = "<group>"; };
 		A900CCDD1FCC93F9007DCDBE /* ModelWebServiceDataParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelWebServiceDataParse.swift; sourceTree = "<group>"; };
 		A900CCE01FCCC103007DCDBE /* ModelEntityContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelEntityContact.swift; sourceTree = "<group>"; };
+		A92BCA831FD3CC7F004888A0 /* ModelContactDataState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContactDataState.swift; sourceTree = "<group>"; };
 		A9730B061FC91DE30014E005 /* Gojek Contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gojek Contacts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9730B091FC91DE30014E005 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9730B0B1FC91DE30014E005 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,14 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
+		A92BCA821FD3CC3D004888A0 /* DataState */ = {
+			isa = PBXGroup;
+			children = (
+				A92BCA831FD3CC7F004888A0 /* ModelContactDataState.swift */,
+			);
+			path = DataState;
+			sourceTree = "<group>";
+		};
 		A9730AFD1FC91DE30014E005 = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +200,7 @@
 		A9730B3A1FC91EA70014E005 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A92BCA821FD3CC3D004888A0 /* DataState */,
 				A900CCDF1FCCC0E6007DCDBE /* Database */,
 				A900CCDC1FCC880B007DCDBE /* WebService */,
 			);
@@ -402,6 +413,7 @@
 				A9730B5B1FC950690014E005 /* CircleView.swift in Sources */,
 				A9730B5D1FC959CB0014E005 /* CircleImageView.swift in Sources */,
 				A9730B4E1FC91F7E0014E005 /* ViewControllerContactAddOrEdit.swift in Sources */,
+				A92BCA841FD3CC80004888A0 /* ModelContactDataState.swift in Sources */,
 				A9730B0C1FC91DE30014E005 /* ViewController.swift in Sources */,
 				A9F6379F1FCB83770087942B /* ControllerMainView.swift in Sources */,
 				A9730B591FC9491B0014E005 /* GraphView.swift in Sources */,
