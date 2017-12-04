@@ -15,6 +15,8 @@ class ViewControllerContactAddOrEdit: UIViewController,UITableViewDataSource,UIT
     @IBOutlet var imageViewCameraIcon:UIImageView!
     @IBOutlet var imageViewProfilePicture:UIImageView!
     
+    @IBOutlet var viewProfileBorder:CircleView!
+    
     @IBOutlet var tableContactData:UITableView!
     
     var textFieldActive:UITextField!
@@ -41,9 +43,13 @@ class ViewControllerContactAddOrEdit: UIViewController,UITableViewDataSource,UIT
         }
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print ("viewDidAppear \(viewProfileBorder.frame)")
+    }
     override func viewDidLoad() {
         controllerContactAddEdit.delegate = self
-        
+        print ("viewDidLoad \(viewProfileBorder.frame)")
         tableContactData.dataSource = self
         tableContactData.delegate = self
         tableContactData.register(UINib(nibName: "TableViewCellContactData", bundle: nil), forCellReuseIdentifier: "TableViewCellContactData")
