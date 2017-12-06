@@ -111,15 +111,21 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             cell.labelContactName.text = "\(data.value(forKey: "first_name") as! String) \(data.value(forKey: "last_name") as! String)"
             if let profilePictureURL = data.value(forKey: "profile_pic") as! String? {
                 
-                if (images_cache[profilePicture] != nil)
+                if (images_cache[profilePictureURL] != nil)
                 {
                     cell.imageContact.image = images_cache[profilePictureURL]
                 }
                 else
                 {
-                    //load_image(link: profilePictureURL, imageview:cell.imageContact)
-                    
+                    controllerMainView.loadImageFromURL(link: profilePictureURL, imageview: cell.imageContact)
                 }
+            }
+            
+            if (data.value(forKey: "favorite") as! Int == 0){
+                cell.imageContactFavourite.isHidden = true
+            }
+            else{
+                cell.imageContactFavourite.isHidden = false
             }
         }
         

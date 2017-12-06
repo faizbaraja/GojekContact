@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 protocol ControllerMainViewDelegate {
     func loadData()
+    func setImageDownloadedFromURL(_ imageFile:UIImage, imageViewContact:UIImageView, stringImageLink:String)
 }
 
 class ControllerMainView: NSObject,WebServiceReturnDelegate {
@@ -64,8 +65,16 @@ class ControllerMainView: NSObject,WebServiceReturnDelegate {
     }
     
     func loadImageFromURL(link:String, imageview:UIImageView){
+        var stringImageLink = link
+        if (stringImageLink.range(of: "https://") == nil) {
+            let prefixString = "https://gojek-contacts-app.herokuapp.com"
+            stringImageLink = "\(prefixString)\(stringImageLink)"
+        }
+        else{
+           print(stringImageLink)
+        }
         modelWebServiceCall.delegate = self
-        modelWebServiceCall.loadImageFromURL(link:link, imageview:imageview)
+        modelWebServiceCall.loadImageFromURL(link:stringImageLink, imageview:imageview)
     }
     
     func jsonData(_ dataFromServer:Any){
@@ -93,5 +102,9 @@ class ControllerMainView: NSObject,WebServiceReturnDelegate {
         return modelEntityContact.getAllContactData()
     }
     
+    
+    func setImageDownloadedFromURL(_ imageFile:UIImage, imageViewContact:UIImageView, stringImageLink:String){
+        delegate?.setImageDownloadedFromURL(imageFile, imageViewContact: imageViewContact, stringImageLink: stringImageLink)
+    }
    
 }
